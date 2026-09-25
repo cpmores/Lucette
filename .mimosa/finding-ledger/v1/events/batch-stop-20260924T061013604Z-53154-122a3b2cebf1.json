@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20260924T061013604Z-53154-122a3b2cebf1",
+  "runId": "20260924T061013604Z-53154-122a3b2cebf1",
+  "runStatus": "completed",
+  "coverage": {
+    "status": "complete",
+    "reasons": []
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "38a41ea2c6c71d47951cec23427a6264589d72bf",
+  "diffHash": "1d6a7443c92cb87e59f5eb54e5ae43ede37214226ed8f340d0105118f712ccad",
+  "rulesVersion": "unavailable",
+  "sessionHash": "f163786be572ef5b6d8c4233f51e3c73fcae673dfbeadb508650d997a7a8ead0",
+  "reportRef": ".mimosa/reports/task-review-sess_6950b82d-575b-4935-bbb1-2d187741d74d-20260924T061013604Z-53154-122a3b2cebf1.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "sim/starmap.go",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-09-24T06:10:14.040Z"
+}

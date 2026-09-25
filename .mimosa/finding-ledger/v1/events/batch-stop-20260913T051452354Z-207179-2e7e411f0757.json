@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20260913T051452354Z-207179-2e7e411f0757",
+  "runId": "20260913T051452354Z-207179-2e7e411f0757",
+  "runStatus": "completed",
+  "coverage": {
+    "status": "complete",
+    "reasons": []
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "38a41ea2c6c71d47951cec23427a6264589d72bf",
+  "diffHash": "00ddd5515676f7996b89a0a20bc5b4c60ff6ffd61331bb48ef1c125fbed5f8d6",
+  "rulesVersion": "unavailable",
+  "sessionHash": "f163786be572ef5b6d8c4233f51e3c73fcae673dfbeadb508650d997a7a8ead0",
+  "reportRef": ".mimosa/reports/task-review-sess_6950b82d-575b-4935-bbb1-2d187741d74d-20260913T051452354Z-207179-2e7e411f0757.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "sim/topology.go",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "sim/model.go",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "sim/topology_test.go",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-09-13T05:14:52.619Z"
+}

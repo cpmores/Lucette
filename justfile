@@ -29,6 +29,11 @@ test:
 test-pkg PKG="./...":
     go test {{PKG}}
 
+# 详细运行单个测试以查看其输出：just trace TestPrintTrace
+# 第二个参数可以换包：just trace TestFoo ./core/
+trace NAME="TestPrintTrace" PKG="./sim/":
+    go test {{PKG}} -v -count=1 -run {{NAME}}
+
 # 带覆盖率的测试
 cover:
     go test -coverprofile={{COVER_FILE}} ./...

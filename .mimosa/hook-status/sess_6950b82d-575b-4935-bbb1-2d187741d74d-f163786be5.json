@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "mimosa-hook-status/v1",
+  "recordedAt": "2026-09-24T06:16:01.703Z",
+  "sessionId": "sess_6950b82d-575b-4935-bbb1-2d187741d74d",
+  "event": "PostToolUse",
+  "toolName": "Edit",
+  "file": "sim/starmap.go",
+  "outcome": "clear",
+  "coverage": "complete",
+  "findingCount": 0,
+  "durationMs": 5,
+  "hostState": "hook_complete",
+  "reportHint": ".mimosa/reports/"
+}
