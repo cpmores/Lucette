@@ -6,12 +6,12 @@ const RETRY_INTERVAL = 3 // seconds
 // according to the starmap it receives.
 //
 // returns Decision with Outcome Placed, Deferred, or Rejected
-func Place(wu WorkUnit, sm StarMap, p PlacePolicy, now int64) Decision {
+func Place(wu *WorkUnit, sm *StarMap, p PlacePolicy, now int64) Decision {
 	// NOTE: for now we just return one node that satified the policy,
 	// but in the future we may return multiple nodes and let the agent choose one
 	// like top-k nodes with highest score, or top-k nodes with lowest cost, etc.
 	oneFeasible := false
-	bestScore := uint64(0)
+	bestScore := float64(0)
 	bestNode := NodeID("")
 	for nodeID, node := range sm.Nodes {
 		score, feasible := p.Score(wu, sm, node, now)
@@ -61,6 +61,7 @@ const (
 	Placed Outcome = iota
 	Deferred
 	Rejected
+	Unknown
 )
 
 type Reason uint8
@@ -80,7 +81,7 @@ type Decision struct {
 
 	// PLaced
 	Node  NodeID
-	Score uint64
+	Score float64
 
 	// Deferred: when to ask again
 	RetryAt int64

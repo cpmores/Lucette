@@ -31,9 +31,8 @@ const (
 type WorkUnit struct {
 	// TODO: finish agent message for workunit
 	// only implement ID for now
-	ID     WorkUnitID
-	Status WorkUnitStatus
-
+	ID        WorkUnitID
+	Status    WorkUnitStatus
 	CreatedAt int64 // when wu is created
 	Deadline  int64 // when wu is illegal
 
@@ -75,5 +74,5 @@ type Policy interface {
 
 type PlacePolicy interface {
 	Policy
-	Score(wu WorkUnit, sm StarMap, n *Node, now int64) (score uint64, feasible bool)
+	Score(wu *WorkUnit, sm *StarMap, n *Node, now int64) (score float64, feasible bool)
 }

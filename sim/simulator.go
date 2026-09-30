@@ -16,10 +16,12 @@ type Simulator interface {
 }
 
 type NodeSimulator struct {
-	ID        SimulatorID
-	Click     int64
-	StarMap   *core.StarMap
-	WorkUnits map[core.WorkUnitID]*core.WorkUnit
+	ID          SimulatorID
+	Click       int64
+	StarMap     *core.StarMap
+	PlacePolicy core.PlacePolicy
+	WorkUnits   map[core.WorkUnitID]*core.WorkUnit
+	Decisions   chan *core.Decision
 }
 
 func (s *NodeSimulator) GetID() SimulatorID {
@@ -27,10 +29,13 @@ func (s *NodeSimulator) GetID() SimulatorID {
 }
 
 // Methods
-func InitNodeSimulator(id SimulatorID, starMap *core.StarMap) *NodeSimulator {
+func InitNodeSimulator(id SimulatorID, placePolicy core.PlacePolicy, starMap *core.StarMap) *NodeSimulator {
 	return &NodeSimulator{
-		ID:      SimulatorID(id),
-		StarMap: starMap,
+		ID:          SimulatorID(id),
+		PlacePolicy: placePolicy,
+		StarMap:     starMap,
+		WorkUnits:   make(map[core.WorkUnitID]*core.WorkUnit),
+		Decisions:   make(chan *core.Decision, 100),
 	}
 }
 
@@ -50,18 +55,32 @@ func (s *NodeSimulator) Pass(click int64) {
 			wu.Status = core.Expired
 		}
 
-		decision := nil
+		decision := core.Decision{
+			Outcome: core.Unknown,
+		} // TODO: default decision
 		if status == core.Waiting {
-			// TODO: finish node and placepolicy
-			decision = core.Place(wu, *s.StarMap)
+			// FINISHED: finish node and placepolicy
+			decision := core.Place(wu, s.StarMap, s.PlacePolicy, currentTime)
 		}
+
+		log.Printf("[%s] WorkUnit %s: status %d, decision %d", s.GetID(), index, status, decision.Outcome)
 	}
 
 	// update StarMap
 
 	// update click
+	s.Click = currentTime
 }
 
-// Place a new WokrUnit into this Node cluster
-func (s *NodeSimulator) Place(wu *core.WorkUnit) {
+// Inject a new WorkUnit into this Node cluster
+func (s *NodeSimulator) Inject(wu *core.WorkUnit) {
+	// TODO: workunit injection
+}
+
+// Reconcile workunit status with the real world
+func (s *NodeSimulator) Reconcile() {
+}
+
+// Decide what to do with the decision
+func (s *NodeSimulator) decide(decision *core.Decision) {
 }
