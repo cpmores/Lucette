@@ -31,6 +31,7 @@ func Place(wu *WorkUnit, sm *StarMap, p PlacePolicy, now int64) Decision {
 		// if we have at least one feasible node, we return the best one
 		return Decision{
 			Outcome: Placed,
+			WuID:    wu.ID,
 			Node:    bestNode,
 			Score:   bestScore,
 		}
@@ -41,6 +42,7 @@ func Place(wu *WorkUnit, sm *StarMap, p PlacePolicy, now int64) Decision {
 
 		return Decision{
 			Outcome: Deferred,
+			WuID:    wu.ID,
 			RetryAt: retry,
 			Reason:  ReasonNoFeasibleNode,
 			Detail:  "no feasible node found, will retry later",
@@ -50,6 +52,7 @@ func Place(wu *WorkUnit, sm *StarMap, p PlacePolicy, now int64) Decision {
 	// everything is gone
 	return Decision{
 		Outcome: Rejected,
+		WuID:    wu.ID,
 		Reason:  ReasonDeadlinePassed,
 		Detail:  "deadline passed, no feasible node found",
 	}
@@ -78,6 +81,7 @@ const (
 
 type Decision struct {
 	Outcome Outcome
+	WuID    WorkUnitID
 
 	// PLaced
 	Node  NodeID

@@ -1,6 +1,6 @@
 package core
 
-type WorkUnitID string
+type WorkUnitID int64
 
 type StarMapID string
 
